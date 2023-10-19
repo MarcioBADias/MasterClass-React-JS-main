@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Aula 1 passo-a-passo</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- CDM -->
+</head>
+<body>
+    <div data-js="root"></div>
+    <script type="text/babel">
+        
+        const user = {
+            name: 'Marcio',
+            lastname: 'Dias',
+            imageUrl: 'https://lh3.googleusercontent.com/ogw/AKPQZvwyM0ePuak65ywH_IrPPiursCBdEuyJ4E4NlBsj=s32-c-mo'
+        }
+        
+        const Title = ({ name, lastname }) => (
+            <h1 data-js="title" id="title">
+                <span>Olá,</span>
+                <b> {name} {lastname}</b>
+            </h1>
+        )
+
+        const App = () => {
+            const name = 'Marcio'
+            return (
+                <>
+                    <Title name={user.name} lastname={user.lastname} />
+                    <img 
+                    style={{
+                        borderRadius: 50
+                    }}
+                    src={user.imageUrl} 
+                    alt={`Imagem de perfil de ${user.name}`} 
+                    />
+                </>
+            )
+        }
+        const container = document.querySelector('[data-js="root"]')
+        const root = ReactDOM.createRoot(container)
+
+        root.render(<App />)
+    </script>
+</body>
+</html>

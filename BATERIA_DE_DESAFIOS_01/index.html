@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bateria de desafios 01</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div class="root"></div>
+    <script type="text/babel">
+        
+        const Product = ({ img, name, description, price }) => (
+            <div className="product">
+                <img src={img} alt={name} />
+                <h3>{name}</h3>
+                <p>{description}</p>
+                <h4>R$ {price}</h4>
+            </div>
+        )
+
+        const Message = ({ role, content }) => (
+            <div>
+                <div>
+                    <img 
+                        src={role === 'assistant' ?
+                         "./assets/icon-bot.png" :
+                         "./assets/icon-user.png"} 
+                         alt="Avatar do perfil" 
+                         style={{
+                            width: 40
+                         }}
+                         />    
+                </div>
+                <p>{content}</p>
+            </div>
+        )
+
+        const App = () => {
+            const products = [
+                {
+                    img: "https://m.media-amazon.com/images/I/A1gcSZNSdhL._SY425_.jpg",
+                    name: "Icewind Dale: Rime of the Frostmaiden Dice and Miscellany D&d Accessory",
+                    description: "Immerse yourself in an Icewind Dale Dungeons & Dragons adventure with a full set of 11 dice (two d20s, one d12, two d10s, one d8, four d6s, and one d4) made for the frozen north.",
+                    price: 150
+                },
+                {
+                    img: "https://m.media-amazon.com/images/I/91FxsuA-aVL._SY425_.jpg",
+                    name: "D&d Forgotten Realms Laeral Silverhand's Explorer's Kit (D&d Tabletop Roleplaying Game Accessory)",
+                    description: "EXPLORE THE REALMS! Let Laeral Silverhand-Open Lord of Waterdeep, centuries-old archmage, and daughter of the goddess of magic-guide you on your path to adventure.",
+                    price: 110
+                }
+            ]
+
+            return(
+                <>
+                    <div>
+                        <h1>Desafio #1: ok</h1>
+                    </div>
+                    <div>
+                        <h1>Desafio #2</h1>
+                        <a id="thumbnail" href="https://youtu.be/_1zSGZTu6io?si=7n_2Imhr3MVV50hf">
+                            <div id="overlays">
+                            <span id="overlay-text" className="style-scope ytd-thumbnail-overlay-now-playing-renderer">Now playing</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div>
+                        <h1>Desafio #3</h1>
+                        <h1 style={{color: 'lightblue'}}>Burgão do Zé</h1>
+                    </div>
+
+                    <div>
+                        <h1>Desafio #4</h1>
+                        <h1>Burgão do Zé</h1>
+                        <p>🎯 Promo toda quarta e quinta</p>
+                        <p>No caso haviam duas tags irmãs e precisava de um fragment para renderizar nessa forma</p>
+                    </div>
+
+                    <div>
+                        <h1>Desafio #5</h1>
+                        {
+                            products.map(product => (
+                                <Product 
+                                    img={product.img}
+                                    name={product.name}
+                                    description={product.description}
+                                    price={product.price}
+                                />
+                            ))
+                        }
+                    </div>
+
+                    <div>
+                        <h1>Desafio #6</h1>
+                        <Message role="assistant" content="O trabalho do programador é transformar café em código?" />
+                        <Message role="human" content="Não. É gerar valor." />
+                    </div>
+                </>
+            )
+        }
+
+        const container = document.querySelector('.root')
+        const root = ReactDOM.createRoot(container)
+
+        root.render(<App />)
+    </script>
+</body>
+</html>
