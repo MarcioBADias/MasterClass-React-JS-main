@@ -1,3 +1,1 @@
-const renderText = (el) => el.textContent = 'oi'
-
-export { renderText }
+export const renderText = (el) => el.textContent = 'oi'

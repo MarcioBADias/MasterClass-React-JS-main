@@ -23,5 +23,15 @@ console.log(getCounter())
 
 //-------------------------------
 
+const title = document.querySelector('[data-js="title"]')
+const button = document.querySelector('[data-js="button"]')
 
+button.addEventListener('click', async () => {
+    try{
+        const module = await import("./myModule.js")
+        module.renderText(title)
+    }catch(err) {
+        title.textContent = err.message
+    }
+})
 
