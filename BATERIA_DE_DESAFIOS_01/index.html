@@ -38,6 +38,70 @@
             </div>
         )
 
+        const Avatar = () => {
+            const avatarImg = "https://media.licdn.com/dms/image/D4D03AQEOiCbUIzJhDQ/profile-displayphoto-shrink_800_800/0/1681146768521?e=2147483647&v=beta&t=SNcUBcT_1Ft6u4oBWtMyAY8zlbq6JChcbmSFrPs64XQ"
+            return (
+                <img 
+                    src= {avatarImg}
+                    alt="Foto de perfil" 
+                    className="avatar"
+                />
+            )
+        }
+
+        const Intro = ({ name,description }) => (
+            <div>
+                <h1>{name}</h1>
+                <p>{description}</p>
+            </div>
+        )
+
+        const Skill = ({ skillname, emoji, bgColor }) => (
+            <li className={`skill ${bgColor}`} >
+                {emoji} {skillname}    
+            </li>
+        )
+
+        const ListOfSkills = () => {
+            const skills = [
+                {
+                    name: 'Programação',
+                    rank: '🤟',
+                    color: 'bg-lightblue'
+                },
+                {
+                    name: 'Faxina',
+                    rank: '👎',
+                    color: 'bg-red'
+                },
+                {
+                    name: 'Culinária',
+                    rank: '👌',
+                    color: 'bg-pink'
+                },
+                {
+                    name: 'RPG',
+                    rank: '🤟',
+                    color: 'bg-yellow'
+                }
+            ]
+
+            return (   
+                <ul className="list-of-skills">
+                    {
+                        skills.map(skill => (
+                                <Skill 
+                                    key={skill.name}
+                                    skillname={skill.name}
+                                    emoji={skill.rank}
+                                    bgColor={skill.color}
+                                />
+                        ))
+                    }
+                </ul>
+            )
+        }
+
         const App = () => {
             const products = [
                 {
@@ -98,6 +162,21 @@
                         <h1>Desafio #6</h1>
                         <Message role="assistant" content="O trabalho do programador é transformar café em código?" />
                         <Message role="human" content="Não. É gerar valor." />
+                    </div>
+
+                    <div>
+                        <h1>Desafio #7</h1>
+                        <div className="card">
+                            <Avatar />
+
+                            <div className="info">
+                                <Intro 
+                                    name="Marcio Dias"
+                                    description="Desenvolvedor Front-end buscando espaço no mercado de trabalho. Apaixonado por pets, pai do Miguel e RPGista Nerd nas horas vagas."
+                                />
+                                <ListOfSkills />
+                            </div>
+                        </div>
                     </div>
                 </>
             )
