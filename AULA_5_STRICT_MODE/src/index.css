@@ -5,6 +5,14 @@
   text-align: center;
 }
 
-h1{
-  color: #006eff;
+ul {
+  list-style: none;
+}
+
+.game {
+  margin-top: 1rem;
+}
+
+.imgWidth {
+  width: 100px;
 }
