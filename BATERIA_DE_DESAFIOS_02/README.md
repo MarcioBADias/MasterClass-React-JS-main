@@ -33,7 +33,7 @@ Ao clicar no botão "+" ao lado de Intervalo: 1, exiba no console a mensagem "Cl
 
 Ao clicar no botão "+" ao lado de Contagem: 0, exiba no console a mensagem "Clicou no mais da Contagem".
 
-Futuramente, a forma que essa aplicação irá funcionar será explicada.
+Futuramente, a forma que essa aplicação irá funcionar será explicada. ok
 
 ---
 
