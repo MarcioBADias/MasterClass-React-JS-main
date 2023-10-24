@@ -51,15 +51,15 @@ Não escreva o texto do botão manualmente em seus console.log. Use as proprieda
 
 # Desafio 03
 
-Implemente o 03-flashcards.jpg. 
+Implemente o 03-flashcards.jpg. ok
 
-Use o array abaixo para preencher os cards com informações. 
+Use o array abaixo para preencher os cards com informações. ok
 
-Quando um card for clicado, o id do card deve ser exibido no console. 
+Quando um card for clicado, o id do card deve ser exibido no console. ok
 
-Não faça cardsInfo[index] para exibir o id do card no console. 
+Não faça cardsInfo[index] para exibir o id do card no console. ok
 
-O console.log não deve ser inserido diretamente na propriedade onClick. Declare uma função acima do retorno do componente e use o console.log nela. 
+O console.log não deve ser inserido diretamente na propriedade onClick. Declare uma função acima do retorno do componente e use o console.log nela. ok
 
 ```js
 const cardsInfo = [
