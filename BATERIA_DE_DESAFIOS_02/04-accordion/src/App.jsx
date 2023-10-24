@@ -1,8 +1,12 @@
 // eslint-disable-next-line react/prop-types
-const Card = ({ cardInfo, id }) => {
-  const showId = (cardInfo) => console.log(cardInfo)
+const Card = ({ faqInfo, answer, index }) => {
   return (
-    <p className="accordion" onClick={() => showId(id)}>{cardInfo}</p>
+    <div className="item">
+      <span className="number">{index}</span>
+      <p className="title">{faqInfo}</p>
+      <span className="number">-</span>
+      <p className="content-box">{answer}</p>
+    </div>
   )
 }
 
@@ -27,12 +31,13 @@ const App = () => {
 
   return (
     <>
-      <div className="constent-box">
-        {faqs.map(card => (
+      <div className="accordion">
+        {faqs.map((faq, i) => (
           <Card
-            key={card.id}
-            id={card.id}
-            cardInfo={card.question}
+            key={faq.id}
+            index={i + 1}
+            faqInfo={faq.title}
+            answer={faq.answer}
           />
         ))}
       </div>
