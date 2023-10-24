@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/prop-types
 const Card = ({ cardInfo, id }) => {
   const showId = (cardInfo) => console.log(cardInfo)
   return (
