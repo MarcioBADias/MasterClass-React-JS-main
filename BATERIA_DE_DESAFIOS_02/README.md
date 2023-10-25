@@ -146,13 +146,13 @@ O texto abaixo do título "Cardápio" é: "Depois de uma semana desafiadora, nad
 
 O hamburger "Prime" no jpg da interface é um exemplo de como o hamburger deve ser renderizado caso tenha esgotado. 
 
-Se a aplicação for acessada entre meio-dia e 21:59h, o rodapé deve exibir "🕛 Tamo aberto até as 22h. Vem visitar a gente ou faça seu pedido online." + o botão Fazer pedido.
+Se a aplicação for acessada entre meio-dia e 21:59h, o rodapé deve exibir "🕛 Tamo aberto até as 22h. Vem visitar a gente ou faça seu pedido online." + o botão Fazer pedido. OK
 
 Ao clicar no botão Fazer pedido, a mensagem abaixo deve ser exibida no console:
 
-"Direcionando para fazer pedido..."
+"Direcionando para fazer pedido..." OK
 
-Se a aplicação for acessada fora do horário comercial da hamburgueria, o rodapé deve exibir apenas a mensagem "🕛 Vamo abrir amanhã as 12h".
+Se a aplicação for acessada fora do horário comercial da hamburgueria, o rodapé deve exibir apenas a mensagem "🕛 Vamo abrir amanhã as 12h". Ok
 
 ```js
 const burgers = [
