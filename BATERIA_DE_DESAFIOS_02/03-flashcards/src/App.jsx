@@ -2,7 +2,7 @@
 const Card = ({ cardInfo, id }) => {
   const showId = (cardInfo) => console.log(cardInfo)
   return (
-    <p className="card" onClick={() => showId(id)}>{cardInfo}</p>
+    <li className="card" onClick={() => showId(id)}>{cardInfo}</li>
   )
 }
 
@@ -42,7 +42,7 @@ const App = () => {
 
   return (
     <>
-      <div className="flashcards">
+      <ul className="flashcards">
         {cardsInfo.map(card => (
           <Card
             key={card.id}
@@ -50,7 +50,7 @@ const App = () => {
             cardInfo={card.question}
           />
         ))}
-      </div>
+      </ul>
     </>
   )
 }
