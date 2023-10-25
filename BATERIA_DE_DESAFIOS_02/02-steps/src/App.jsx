@@ -15,18 +15,10 @@ const App = () => {
       </div>
       <div className="steps">
         <div className="numbers">
-          <div className="buttons active">
-            <span>1</span>
-          </div>
-          <div className="buttons">
-            <span>2</span>
-          </div>
-          <div className="buttons">
-            <span>3</span>
-          </div>
-          <div className="buttons">
-            <span>4</span>
-          </div>
+          <div className=" active">1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
         </div>
         <h2 className="message">
           Passo 1: Entender o problema do cliente
