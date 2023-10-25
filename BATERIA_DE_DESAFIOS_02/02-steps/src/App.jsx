@@ -1,17 +1,9 @@
-// eslint-disable-next-line react/prop-types
-const ClickBtn = ({ text }) => {
-  const readBtnText = (btnContent) => console.log(btnContent)
-  const readOnCLick = () => readBtnText(text)
-  return (
-    <button className="close" onClick={readOnCLick}>{text}</button>
-  )
-}
-
 const App = () => {
+  const handleShowContent = e => console.log(e.target.textContent)
   return (
     <>
       <div className="container-close">
-        <ClickBtn text="Fechar" />
+        <button className="close" onClick={handleShowContent}>Fechar</button>
       </div>
       <div className="steps">
         <div className="numbers">
@@ -24,8 +16,8 @@ const App = () => {
           Passo 1: Entender o problema do cliente
         </h2>
         <div className="buttons">
-          <ClickBtn text="Anterior" />
-          <ClickBtn text="Prócimo" />
+          <button onClick={handleShowContent}>Anterior</button>
+          <button onClick={handleShowContent}>Próximo</button>
         </div>
       </div>
     </>
