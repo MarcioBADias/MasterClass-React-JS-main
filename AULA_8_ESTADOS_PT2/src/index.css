@@ -5,14 +5,7 @@
   text-align: center;
 }
 
-ul {
-  list-style: none;
-}
-
-.game {
-  margin-top: 1rem;
-}
-
-.imgWidth {
-  width: 100px;
+.app {
+  display: flex;
+  gap: 1rem;
 }
