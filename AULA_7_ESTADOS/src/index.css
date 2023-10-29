@@ -1,0 +1,18 @@
+[data-js="root"] {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+.game {
+  margin-top: 1rem;
+}
+
+.imgWidth {
+  width: 100px;
+}
