@@ -16,25 +16,33 @@ const FormAddItens = ({ onHandleSubmit }) => (
   </form>
 )
 
-const ListOfItens = ({ sortedItens, onClickCheck, onClickDelete }) => (
-  <ul>
-    {sortedItens.map(item => (
-      <li key={item.id}>
-        <input type="checkbox" checked={item.stored} onChange={() => onClickCheck(item.id)} />
-        <span className={item.stored ? 'checked-item' : ''}>{item.quantity} {item.name}</span>
-        <button onClick={() => onClickDelete(item.id)}>❌</button>
-      </li>
-    ))}
-  </ul>
-)
+const ListOfItens = ({ itens, orderBy, onClickCheck, onClickDelete }) => {
+  const sortedItens = orderBy === 'stored'
+    ? itens.filter(item => item.stored)
+    : orderBy === 'alphabetically'
+      ? itens.toSorted((a, b) => a.name > b.name ? 1 : b.name > a.name ? -1 : 0)
+      : itens
+  return (
+    <ul>
+      {sortedItens.map(item => (
+        <li key={item.id}>
+          <input type="checkbox" checked={item.stored} onChange={() => onClickCheck(item.id)} />
+          <span className={item.stored ? 'checked-item' : ''}>{item.quantity} {item.name}</span>
+          <button onClick={() => onClickDelete(item.id)}>❌</button>
+        </li>
+      ))}
+    </ul>
+  )
+}
 
-const Filters = ({ orderBy, onChangeOrder }) => (
+const Filters = ({ orderBy, onChangeOrder, onClickClearBtn }) => (
   <div className="container">
     <select value={orderBy} onChange={onChangeOrder}>
       <option value="newest">Ordenar por mais recentes</option>
       <option value="stored">Mostrar Guardados</option>
       <option value="alphabetically">Ordenar por ordem alfabética</option>
     </select>
+    <button onClick={onClickClearBtn}>Lipar lista</button>
   </div>
 )
 
@@ -53,7 +61,14 @@ const Stats = ({ itens }) => {
   )
 }
 
-const App = () => {
+const Logo = () => (
+  <header>
+    <img src="logo-espaco-mulher.png" alt="logo espaço mulher" />
+    <h1>Espaço Mulher</h1>
+  </header>
+)
+
+const useItens = () => {
   const [itens, setItens] = useState([])
   const [orderBy, setOrderBy] = useState('newest')
 
@@ -70,35 +85,54 @@ const App = () => {
     }])
   }
 
-  const handleClickDelete = (id) => setItens(prev => prev.filter(item => item.id !== id))
-
-  const handleChangeCheck = (id) => setItens(prev => prev.map(item => item.id === id ? { ...item, stored: !item.stored } : item))
-
   const handleChangeOrder = (e) => setOrderBy(e.target.value)
+  const handleClickDelete = (id) => setItens(prev => prev.filter(item => item.id !== id))
+  const handleClickClearBtn = () => setItens([])
 
-  const sortedItens = orderBy === 'stored'
-    ? itens.filter(item => item.stored)
-    : orderBy === 'alphabetically'
-      ? itens.toSorted((a, b) => a.name > b.name ? 1 : b.name > a.name ? -1 : 0)
-      : itens
+  const handleChangeCheck = (id) => setItens(prev => prev
+    .map(item => item.id === id ? { ...item, stored: !item.stored } : item))
+
+  return {
+    itens,
+    orderBy,
+    handlesubmit,
+    handleChangeOrder,
+    handleClickDelete,
+    handleClickClearBtn,
+    handleChangeCheck
+  }
+}
+
+const App = () => {
+  const {
+    itens,
+    orderBy,
+    handlesubmit,
+    handleChangeOrder,
+    handleClickDelete,
+    handleClickClearBtn,
+    handleChangeCheck
+  } = useItens()
 
   return (
     <>
-      <header>
-        <img src="logo-espaco-mulher.png" alt="logo espaço mulher" />
-        <h1>Espaço Mulher</h1>
-      </header>
+      <Logo />
 
       <FormAddItens onHandleSubmit={handlesubmit} />
 
       <div>
         <ListOfItens
-          sortedItens={sortedItens}
+          itens={itens}
+          orderBy={orderBy}
           onClickCheck={handleChangeCheck}
           onClickDelete={handleClickDelete}
         />
 
-        <Filters orderBy={orderBy} onChangeOrder={handleChangeOrder} />
+        <Filters
+          orderBy={orderBy}
+          onChangeOrder={handleChangeOrder}
+          onClickClearBtn={handleClickClearBtn}
+        />
       </div>
       <Stats itens={itens} />
     </>
