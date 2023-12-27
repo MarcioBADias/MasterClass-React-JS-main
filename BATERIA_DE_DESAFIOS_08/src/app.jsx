@@ -1,26 +1,40 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
+
+const memesAPI = 'https://raw.githubusercontent.com/MarcioBADias/data-fake/main/memes.json'
+
+const getRandomMemes = (memes, count) => {
+  const shuffledMemes = memes.sort(() => 0.5 - Math.random())
+  return shuffledMemes.slice(0, count)
+}
 
 const App = () => {
-  const [cats, setCats] = useState([])
-  const [catImg, setCatImg] = useState(null)
+  const [memes, setMemes] = useState([])
+  const [randomMemes, setRandomMemes] = useState([])
 
   useEffect(() => {
-    fetch('https://raw.githubusercontent.com/MarcioBADias/data-fake/main/ten-cats.json')
-      .then(res => res.json())
-      .then(data => setCats(data))
+    fetch(memesAPI)
+      .then((res) => res.json())
+      .then((data) => setMemes(data))
       .catch(console.log)
-  }, [cats])
+  }, [])
 
-  const handleClick = () => {
-    console.log(cats[0].url)
-    setCatImg(cats[Math.floor(Math.random() * 10)].url)
-  }
+  useEffect(() => {
+    if (memes.length > 0) {
+      const randomMemes = getRandomMemes(memes, 3)
+      setRandomMemes(randomMemes)
+    }
+  }, [memes])
+
   return (
-    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-      {catImg !== null && <img src={catImg} style={{ maxWidth: 500 }} />}
-      <button onClick={handleClick} style={{ marginTop: '1rem' }}>Mostrar gatinhos</button>
+    <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
+      {randomMemes.map((meme, index) => (
+        <img key={index} src={meme.url} style={{ maxWidth: 500, margin: "10px" }} />
+      ))}
     </div>
   )
 }
+
 export { App }
+
