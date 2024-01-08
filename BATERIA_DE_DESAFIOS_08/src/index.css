@@ -4,7 +4,14 @@
   padding: 2rem;
   text-align: center;
 }
+div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 
-h1{
-  color: #006eff;
+img {
+  max-width: 500px;
+  max-height: 500px;
+  margin-bottom: 1rem;
 }
