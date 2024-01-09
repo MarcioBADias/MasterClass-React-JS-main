@@ -1,24 +1,18 @@
-import { useState } from 'react'
-
-const steps = [
-  {
-    id: crypto.randomUUID(),
-    description: "Entender o problema do cliente"
-  },
-  {
-    id: crypto.randomUUID(),
-    description: "Desenvolver a solução do problema",
-  },
-  {
-    id: crypto.randomUUID(),
-    description: "Repetir até o cliente ficar feliz e encher seu 🍑 de dinheiro",
-  },
-]
+import { useEffect, useState } from 'react'
 
 const Steps = () => {
+  const [steps, setSteps] = useState([])
   const [stepCount, setStepCount] = useState(0)
   const nextStep = () => stepCount < steps.length - 1 && setStepCount(step => step + 1)
   const previusStep = () => stepCount && setStepCount(step => step - 1)
+
+  useEffect(() => {
+    fetch('https://raw.githubusercontent.com/MarcioBADias/data-fake/main/steps.json')
+      .then(r => r.json())
+      .then(data => setSteps(data))
+      .catch(console.log)
+    console.log(steps)
+  }, [])
   return (
     <div className="steps">
       <div className="numbers">
@@ -30,7 +24,7 @@ const Steps = () => {
         ))}
       </div>
       <h2 className="message">
-        Passo 1: {steps[stepCount].description}
+        Passo 1: {steps[stepCount]?.description}
       </h2>
       <div className="buttons">
         <button onClick={previusStep}>Anterior</button>
