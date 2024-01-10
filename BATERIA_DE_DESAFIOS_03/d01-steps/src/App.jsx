@@ -3,16 +3,18 @@ import { useEffect, useState } from 'react'
 const Steps = () => {
   const [steps, setSteps] = useState([])
   const [stepCount, setStepCount] = useState(0)
-  const nextStep = () => stepCount < steps.length - 1 && setStepCount(step => step + 1)
-  const previusStep = () => stepCount && setStepCount(step => step - 1)
 
   useEffect(() => {
     fetch('https://raw.githubusercontent.com/MarcioBADias/data-fake/main/steps.json')
       .then(r => r.json())
       .then(data => setSteps(data))
       .catch(console.log)
-    console.log(steps)
   }, [])
+
+
+  const handleNextStep = () => stepCount < steps.length - 1 && setStepCount(step => step + 1)
+  const handlePreviusStep = () => stepCount && setStepCount(step => step - 1)
+
   return (
     <div className="steps">
       <div className="numbers">
@@ -27,8 +29,8 @@ const Steps = () => {
         Passo 1: {steps[stepCount]?.description}
       </h2>
       <div className="buttons">
-        <button onClick={previusStep}>Anterior</button>
-        <button onClick={nextStep}>Próximo</button>
+        <button onClick={handlePreviusStep}>Anterior</button>
+        <button onClick={handleNextStep}>Próximo</button>
       </div>
     </div>
   )
@@ -36,7 +38,7 @@ const Steps = () => {
 
 const App = () => {
   const [showContainer, setShowContainer] = useState(true)
-  const handleShowContent = () => setShowContainer(!showContainer)
+  const handleShowContent = () => setShowContainer(s => !s)
   return (
     <>
       <div className="container-close">
